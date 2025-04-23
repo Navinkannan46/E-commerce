@@ -1,8 +1,5 @@
-"use client"
-import React, { useState } from 'react'
 
 const page = () => {
-    const [menu, setMenu] = useState(false)
     return (
         <div>
             <div className='flex justify-between items-center'>
