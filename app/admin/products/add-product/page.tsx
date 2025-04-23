@@ -21,13 +21,13 @@ const page = () => {
                         <label htmlFor="">Product Name</label>
                         <select name="" id="" className='border border-gray-400 p-2 rounded'>
                             <option value="" hidden>Select Category</option>
-                            <option value="">Men's</option>
-                            <option value="">Kids</option>
-                            <option value="">Women's</option>
+                            <option value="Mens">Mens</option>
+                            <option value="Kids">Kids</option>
+                            <option value="Womens">Womens</option>
                         </select>
                     </div>
                     <div className='flex flex-row gap-2 '>
-                        <div className='flex flex-col gap-2   w-full'>
+                        <div className='flex flex-col gap-2 w-full'>
                             <label htmlFor="">Price</label>
                             <input type="number" placeholder='0.00' className='border border-gray-400 p-2 rounded w-full' />
                         </div>

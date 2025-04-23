@@ -6,16 +6,8 @@ import { Trash } from 'lucide-react';
 import OrderSummery from '../../components/OrderSummery';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { useRouter } from 'next/navigation';
-type CartItem = {
-    id: string;
-    name: string;
-    price: number;
-    quantity: number;
-}
-const page = () => {
-    const [cartItems, setCartItems] = useState<CartItem[]>([
 
-    ]);
+const Page = () => {
     const router = useRouter()
 
 
@@ -67,4 +59,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

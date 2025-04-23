@@ -4,7 +4,7 @@ import landingImg from '../../public/landing-img.png'
 import { Products } from '../../components/Products'
 import Footer from '@/components/Footer'
 
-const page = () => {
+const Page = () => {
     const [menu, setMenu] = useState("All")
     const product = [
         { id: 1, name: "Adidas", price: 1222, category: "Men", image: landingImg },

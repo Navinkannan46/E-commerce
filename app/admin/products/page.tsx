@@ -3,7 +3,7 @@ import React from 'react'
 import landingImg from '../../../public/landing-img.png'
 import Link from 'next/link'
 
-const page = () => {
+const Page = () => {
   return (
     <div>
       <div className='flex justify-between items-center'>
@@ -16,18 +16,18 @@ const page = () => {
       <table className=' w-full  rounded'>
         <thead>
           <tr className='border border-gray-400 '>
-            <td className=" p-4">Image</td>
-            <td className=" p-4">Name</td>
-            <td className=" p-4">Category</td>
-            <td className="max-w-[70px] p-4">Price</td>
-            <td className=" p-4">Stock</td>
-            <td className=" p-4">Actions</td>
+            <th className=" p-4">Image</th>
+            <th className=" p-4">Name</th>
+            <th className=" p-4">Category</th>
+            <th className="max-w-[70px] p-4">Price</th>
+            <th className=" p-4">Stock</th>
+            <th className=" p-4">Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr className='border border-gray-400'>
             <td className='w-[80px] p-4'>
-              <Image src={landingImg} alt={''} width={50} className='object-cover' />
+              <Image src={landingImg} alt={'Product image'} width={50} className='object-cover' />
             </td>
             <td className=" p-4 ">sdfdsf</td>
             <td className=" p-4 ">sadds</td>
@@ -70,4 +70,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
