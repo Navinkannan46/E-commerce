@@ -4,7 +4,7 @@ import { ArrowLeft, CreditCard } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
-const page = () => {
+const Page = () => {
     const router=useRouter()
     return (
         <div className='p-8'>
