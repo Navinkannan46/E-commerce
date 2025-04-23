@@ -6,7 +6,7 @@ interface ProductsProps {
     checkout?: boolean; // Optional prop
 }
 
-const orderSummery: React.FC<ProductsProps> = ({ checkout }) => {
+const OrderSummery: React.FC<ProductsProps> = ({ checkout }) => {
     const router =useRouter()
     return (
         <div className='bg-gray-100 p-4 ml-6 sm:ml-0 max-w-[450px]  rounded'>
@@ -42,4 +42,4 @@ const orderSummery: React.FC<ProductsProps> = ({ checkout }) => {
     )
 }
 
-export default orderSummery
+export default OrderSummery

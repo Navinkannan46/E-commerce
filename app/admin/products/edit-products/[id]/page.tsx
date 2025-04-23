@@ -22,9 +22,9 @@ const page = () => {
                         <label htmlFor="">Product Name</label>
                         <select name="" id="" className='border border-gray-400 p-2 rounded'>
                             <option value="" hidden>Select Category</option>
-                            <option value="">Men's</option>
-                            <option value="">Kids</option>
-                            <option value="">Women's</option>
+                            <option value="Mens">Mens</option>
+                            <option value="Kids">Kids</option>
+                            <option value="Womens">Womens</option>
                         </select>
                     </div>
                     <div className='flex flex-row gap-2 '>
@@ -69,4 +69,4 @@ const page = () => {
     )
 }
 
-export default age
+export default page

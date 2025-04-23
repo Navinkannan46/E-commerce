@@ -1,6 +1,6 @@
 'use client'
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
-import { ClipboardList, Heart, Home, ShoppingBag, ShoppingCart } from 'lucide-react';
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { ClipboardList, Heart, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -23,21 +23,7 @@ const Navbar = () => {
                     <li><Link href="/allProducts" className="hover:text-blue-500">Shop</Link></li>
                     <li><Link href="/" className="hover:text-blue-500">About Us</Link></li>
                     <li><Link href="/" className="hover:text-blue-500">Contact Us</Link></li>
-                    {/* <li>
-                        <SignedIn>
-                            <UserButton >
-                                <UserButton.MenuItems>
-                                    <UserButton.Action label='Cart' labelIcon={<ShoppingCart size={16} />} onClick={() => router.push('/cart')} />
-                                    <UserButton.Action label='wishlist' labelIcon={<Heart size={16} />} onClick={() => router.push('/wishlist')} />
-                                </UserButton.MenuItems>
-                            </UserButton>
-                        </SignedIn>
-
-                        <SignedOut>
-                            <SignInButton />
-                        </SignedOut>
-
-                    </li> */}
+                    
                     <li>
                         <SignedOut>
                             <div>

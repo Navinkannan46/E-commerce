@@ -1,6 +1,5 @@
 'use client'
 import Image from 'next/image';
-import { useState } from 'react'
 import landingImg from '../../public/landing-img.png'
 import { Trash } from 'lucide-react';
 import OrderSummery from '../../components/OrderSummery';
