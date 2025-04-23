@@ -10,7 +10,7 @@ type schemas={
     cart:string[] ;
     whislist:string[] ;
     orderHistory:string[] ;
-    createdOn:Date;
+    createdAt:Date;
 
 }
 const userSchema = new Schema<schemas>({
@@ -24,7 +24,7 @@ const userSchema = new Schema<schemas>({
     cart: [{ type: Schema.Types.ObjectId, ref: "Cart" }],
     whislist: [{ type: Schema.Types.ObjectId, ref: "Whislist" }],
     orderHistory: [{ type: Schema.Types.ObjectId, ref: "Order" }],
-    createdOn: { type: Date, default: Date.now },
+    createdAt: { type: Date, default: Date.now },
 })
 const User = mongoose.models.User || mongoose.model("User", userSchema)
 export default User
