@@ -4,6 +4,7 @@ import { WebhookEvent } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
 import connectDb from '@/lib/db'
 import User from '@/model/user'
+import { tree } from 'next/dist/build/templates/app-page'
 
 export async function POST(req: Request) {
     const SIGNING_SECRET = process.env.SIGNING_SECRET
@@ -64,7 +65,9 @@ export async function POST(req: Request) {
             name: `${first_name} ${last_name}`
         }
 
-        await User.create(userData)
+        await User.findByIdAndUpdate({ clerkId: id }, userData, { upsert: true, new: true })
+        console.log("created");
+
         return NextResponse.json({ message: "created", user: userData })
     }
 
