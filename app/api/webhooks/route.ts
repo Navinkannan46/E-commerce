@@ -4,7 +4,6 @@ import { WebhookEvent } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
 import connectDb from '@/lib/db'
 import User from '@/model/user'
-import { tree } from 'next/dist/build/templates/app-page'
 
 export async function POST(req: Request) {
     const SIGNING_SECRET = process.env.SIGNING_SECRET
@@ -55,6 +54,7 @@ export async function POST(req: Request) {
     // console.log(`Received webhook with ID ${id} and event type of ${eventType}`)
     console.log('Webhook payload:', body)
     await connectDb
+console.log("jggg");
 
     if (eventType === 'user.created' || eventType === 'user.updated') {
         const { id, email_addresses, first_name, last_name } = evt.data
@@ -70,9 +70,6 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ message: "created", user: userData })
     }
-
-
-
 
     return new Response('Webhook received', { status: 200 })
 
