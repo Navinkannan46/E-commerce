@@ -1,20 +1,24 @@
 import mongoose, { Schema } from "mongoose";
-type schemas={
-    clerkId:string;
-    name:string;
-    email:string ;
-    password:string ;
-    phone:number;
-    isBlocked:boolean ;
-    isAdmin:boolean ;
-    cart:string[] ;
-    whislist:string[] ;
-    orderHistory:string[] ;
-    createdAt:Date;
+type schemas = {
+    clerkId: string;
+    firstName: string;
+    lastName: string;
+    name: string;
+    email: string;
+    password: string;
+    phone: number;
+    isBlocked: boolean;
+    isAdmin: boolean;
+    cart: string[];
+    whislist: string[];
+    orderHistory: string[];
+    createdAt: Date;
 
 }
 const userSchema = new Schema<schemas>({
-    clerkId:{type: String, required: true,unique:true},
+    clerkId: { type: String, required: true, unique: true },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: false },

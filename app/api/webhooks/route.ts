@@ -1,8 +1,9 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
-import {  WebhookEvent } from '@clerk/nextjs/server'
+import { WebhookEvent } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
-import { createUser } from '@/actions/user.actions'
+import connectDb from '@/lib/db'
+import User from '@/model/user'
 
 export async function POST(req: Request) {
     const SIGNING_SECRET = process.env.SIGNING_SECRET
@@ -49,25 +50,26 @@ export async function POST(req: Request) {
 
     // Do something with payload
     // For this guide, log payload to console
-    const { id } = evt.data
     const eventType = evt.type
-    console.log(`Received webhook with ID ${id} and event type of ${eventType}`)
+    // console.log(`Received webhook with ID ${id} and event type of ${eventType}`)
     console.log('Webhook payload:', body)
+    await connectDb
 
-    if (eventType === 'user.created') {
-        const { id, username, email_addresses } = evt.data
-        const user = {
+    if (eventType === 'user.created' || eventType === 'user.updated') {
+        const { id, email_addresses, first_name, last_name } = evt.data
+        const email = email_addresses[0]?.email_address
+        const userData = {
             clerkId: id,
-            name: username,
-            email: email_addresses[0].email_address,
+            email,
+            name: `${first_name} ${last_name}`
         }
-        console.log(id, username, email_addresses[0].email_address);
 
-        const newUser = await createUser(user)
-
-        return NextResponse.json({ message: 'New User Created', user: newUser })
-
+        await User.create(userData)
+        return NextResponse.json({ message: "created", user: userData })
     }
+
+
+
 
     return new Response('Webhook received', { status: 200 })
 
