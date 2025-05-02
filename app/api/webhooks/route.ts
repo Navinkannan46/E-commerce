@@ -2,8 +2,7 @@ import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
-import connectDb from '@/lib/db'
-import User from '@/model/user'
+import { createUser } from '@/action/user.action'
 
 export async function POST(req: Request) {
     const SIGNING_SECRET = process.env.SIGNING_SECRET
@@ -53,22 +52,19 @@ export async function POST(req: Request) {
     const eventType = evt.type
     // console.log(`Received webhook with ID ${id} and event type of ${eventType}`)
     console.log('Webhook payload:', body)
-    await connectDb
-console.log("jggg");
+    console.log("jggg");
 
     if (eventType === 'user.created' || eventType === 'user.updated') {
         const { id, email_addresses, first_name, last_name } = evt.data
-        const email = email_addresses[0]?.email_address
-        const userData = {
-            clerkId: id,
-            email,
-            name: `${first_name} ${last_name}`
-        }
 
-        await User.findByIdAndUpdate({ clerkId: id }, userData, { upsert: true, new: true })
+        await createUser({
+            clerkId: id,
+            email: email_addresses[0]?.email_address,
+            name: `${first_name} ${last_name}`
+        })
         console.log("created");
 
-        return NextResponse.json({ message: "created", user: userData })
+        return NextResponse.json({ message: "created" })
     }
 
     return new Response('Webhook received', { status: 200 })
