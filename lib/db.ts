@@ -1,9 +1,15 @@
 import mongoose from "mongoose"
 const connectDb = async () => {
     const MONGODB_URL=process.env.MONGODB_URL!
+    if(!MONGODB_URL){
+        return console.log("No Mongodb Url");
+        
+    }
     try {
-        if (mongoose.connection.readyState === 0) {
-            await mongoose.connect(MONGODB_URL);
+        if (mongoose.connection.readyState! === 1) {
+            await mongoose.connect(MONGODB_URL,{
+                dbName:"Shop_app",
+            });
             console.log('MongoDB connected');
         }
     } catch (error) {

@@ -22,7 +22,7 @@ const userSchema = new Schema<schemas>({
     isBlocked: { type: Boolean, default: false },
     isAdmin: { type: Boolean, default: false },
     cart: [{ type: Schema.Types.ObjectId, ref: "Cart", default: [] }],
-    wislist: [{ type: Schema.Types.ObjectId, ref: "Wislist", default: [] }],
+    wislist: [{ type: Schema.Types.ObjectId, ref: "Wishlist", default: [] }],
     orderHistory: [{ type: Schema.Types.ObjectId, ref: "Order", default: [] }],
     createdAt: { type: Date, default: Date.now },
 })
