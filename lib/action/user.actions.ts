@@ -10,17 +10,12 @@ type createDate = {
 export const createOrUpdate = async ({ id, email, first_name, last_name }: createDate) => {
     try {
         await connectDb()
-        const users = await User.findByIdAndUpdate(
-            { clerkId:id },
-            {
-                $set: {
-                    name: `${first_name} ${last_name}`,
-                    email: email,
-                }
-            },
-            { new: true, upsert: true }
-
-        )
+        const users = {
+            clerkId: id,
+            name: `${first_name} ${last_name}`,
+            email: email,
+        }
+        await User.create(users)
         return users
     } catch (error) {
         console.error("Error in createOrUpdate:", error);
