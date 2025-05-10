@@ -1,3 +1,4 @@
+import { createOrUpdate } from '@/lib/action/user.actions'
 import { verifyWebhook } from '@clerk/nextjs/webhooks'
 
 export async function POST(req: Request) {
@@ -6,12 +7,30 @@ export async function POST(req: Request) {
 
         // Do something with payload
         // For this guide, log payload to console
-        const { id } = evt.data
         const eventType = evt.type
-        console.log(`Received webhook with ID ${id} and event type of ${eventType}`)
-        console.log('Webhook payload:', evt.data)
-        if (evt.type === 'user.created') {
-            console.log('userId:', evt.data.id)
+        console.log(` event type of ${eventType}`)
+        if (evt.type === 'user.created' || evt.type === 'user.updated') {
+            try {
+                const { id, email_addresses, first_name, last_name } = evt.data
+                const email = email_addresses?.[0]?.email_address;
+                if (!email) {
+                    return new Response('Email not found in webhook payload', { status: 400 });
+                }
+                const firstName = first_name || '';
+                const lastName = last_name || '';
+                await createOrUpdate({
+                    id,
+                    email,
+                    first_name: firstName,
+                    last_name: lastName
+                })
+                return new Response('user is created or updated')
+            } catch (error) {
+                console.log('Error is created or updated', error);
+                return new Response('Error Occured', { status: 400, })
+
+            }
+
         }
         return new Response('Webhook received', { status: 200 })
     } catch (err) {
