@@ -11,7 +11,7 @@ export const createOrUpdate = async ({ id, email, first_name, last_name }: creat
     try {
         await connectDb()
         const users = await User.findByIdAndUpdate(
-            { clerkId: id },
+            { clerkId:id },
             {
                 $set: {
                     name: `${first_name} ${last_name}`,

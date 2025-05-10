@@ -8,7 +8,7 @@ type schemas = {
     isBlocked?: boolean;
     isAdmin?: boolean;
     cart?: string[];
-    wislist?: string[];
+    wishlist?: string[];
     orderHistory?: string[];
     createdAt?: Date;
 
@@ -19,12 +19,12 @@ const userSchema = new Schema<schemas>({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: false },
     phone: { type: Number, required: false, default: null },
-    isBlocked: { type: Boolean, default: false },
-    isAdmin: { type: Boolean, default: false },
+    isBlocked: { type: Boolean },
+    isAdmin: { type: Boolean },
     cart: [{ type: Schema.Types.ObjectId, ref: "Cart", default: [] }],
-    wislist: [{ type: Schema.Types.ObjectId, ref: "Wishlist", default: [] }],
+    wishlist: [{ type: Schema.Types.ObjectId, ref: "Wishlist", default: [] }],
     orderHistory: [{ type: Schema.Types.ObjectId, ref: "Order", default: [] }],
     createdAt: { type: Date, default: Date.now },
-})
-const User = mongoose.models.User || mongoose.model("User", userSchema)
+}, { timestamps: true })
+const User = mongoose.models.User || mongoose.model<schemas>("User", userSchema)
 export default User

@@ -16,13 +16,12 @@ export async function POST(req: Request) {
                 if (!email) {
                     return new Response('Email not found in webhook payload', { status: 400 });
                 }
-                const firstName = first_name || '';
-                const lastName = last_name || '';
+                
                 await createOrUpdate({
                     id,
                     email,
-                    first_name: firstName,
-                    last_name: lastName
+                    first_name: first_name || '',
+                    last_name: last_name || '',
                 })
                 return new Response('user is created or updated')
             } catch (error) {
