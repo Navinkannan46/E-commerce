@@ -1,3 +1,4 @@
+'use server'
 import User from "@/model/user";
 import connectDb from "../db";
 type createDate = {
