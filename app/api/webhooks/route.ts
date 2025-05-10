@@ -50,23 +50,11 @@ export async function POST(req: Request) {
     // Do something with payload
     // For this guide, log payload to console
     const eventType = evt.type
-    console.log("jggg");
-
-    if (eventType === 'user.created' || eventType === 'user.updated') {
-        const { id, email_addresses, first_name, last_name } = evt.data
-        const email = email_addresses?.[0]?.email_address
-        if (!email) {
-            return new Response('Error: Missing email address', { status: 400 });
-        }
-        await createUser({
-            clerkId: id,
-            email,
-            name: `${first_name ?? ''} ${last_name ?? ''}`.trim()
-        })
-        console.log("created");
-
-        return NextResponse.json({ message: "created" })
-    }
+    
+if(evt.type==='user.created'){
+    console.log("user.created");
+    
+}
 
     return new Response('Webhook received', { status: 200 })
 
