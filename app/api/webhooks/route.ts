@@ -23,12 +23,12 @@ export async function POST(req: Request) {
             status: 400,
         })
     }
-
+headers
     // Get body
     const payload = await req.json()
     const body = JSON.stringify(payload)
 
-    let evt
+    let evt:Event
 
     // Verify payload with headers
     try {
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
             'svix-id': svix_id,
             'svix-timestamp': svix_timestamp,
             'svix-signature': svix_signature,
-        }) 
+        }) as Event
     } catch (err) {
         console.error('Error: Could not verify webhook:', err)
         return new Response('Error: Verification error', {
