@@ -8,7 +8,7 @@ const connectDb = async () => {
     try {
         if (mongoose.connection.readyState! === 1) {
             await mongoose.connect(MONGODB_URL,{
-                dbName:"Shop_app",
+               dbName:"e-commerce",
             });
             console.log('MongoDB connected');
         }
