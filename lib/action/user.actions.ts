@@ -26,11 +26,8 @@ export const createOrUpdate = async ({ id, email, first_name, last_name }: UserD
     );
 
     return user;
-  } catch (error: any) {
-    if (error.code === 11000) {
-      console.error("Duplicate key error:", error);
-      throw new Error("User with this email or clerkId already exists");
-    }
+  } catch (error) {
+
     console.error("Error in createOrUpdate:", error);
     throw error;
   }
