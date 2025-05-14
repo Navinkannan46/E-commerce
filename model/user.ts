@@ -1,16 +1,19 @@
-import mongoose, { Schema } from "mongoose";
-type schemas = {
-    clerkId: string;
-    name: string;
-    email: string;
-  
+import mongoose, { Schema, model, Model } from "mongoose";
 
+interface UserSchema {
+  clerkId: string;
+  name: string;
+  email: string;
 }
-const userSchema = new Schema<schemas>({
+
+const userSchema = new Schema<UserSchema>(
+  {
     clerkId: { type: String, required: true, unique: true },
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
+  },
+  { timestamps: true }
+);
 
-}, { timestamps: true })
-const User = mongoose.models.User || mongoose.model<schemas>("User", userSchema)
-export default User
+const User: Model<UserSchema> = mongoose.models.User || model<UserSchema>("User", userSchema);
+export default User;
