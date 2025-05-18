@@ -1,14 +1,14 @@
 import mongoose, { Schema, model, Model } from "mongoose";
 
 interface UserSchema {
-  clerkId: string;
+  _id: string;
   name: string;
   email: string;
 }
 
 const userSchema = new Schema<UserSchema>(
   {
-    clerkId: { type: String, required: true, unique: true },
+    _id: { type: String, required: true, unique: true },
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
   },

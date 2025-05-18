@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^6.15.0",
     "axios": "^1.8.4",
     "bcrypt": "^5.1.1",
+    "inngest": "^3.35.1",
     "lucide-react": "^0.487.0",
     "mongoose": "^8.13.2",
     "next": "15.2.4",
